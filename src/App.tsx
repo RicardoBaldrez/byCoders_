@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
+
+import AddForecast from './components/AddForecast';
+import Forecasts from './components/Forecasts';
+
 import './App.css';
 
 function App() {
+  const [latitude, setLatitude] = useState<string>("");
+  const [longitude, setLongitude] = useState<string>("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Initial Page</h1>
+
+      <BrowserRouter>
+        <Link to="/">Come back</Link>
+        <div>
+          <NavLink to="/forecasts" className={({ isActive }) => isActive ? "active" : ""}>Forecasts</NavLink>{" "}/{" "}
+          <NavLink to="/add-forecast" className={({ isActive }) => isActive ? "active" : ""}>add-forecast</NavLink>
+        </div>
+
+        <Routes>
+          <Route path='/' element={<h1>Page Initial</h1>} />
+          <Route path="/forecasts" element={<Forecasts />} />
+          <Route path='/add-forecast' element={<AddForecast />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
