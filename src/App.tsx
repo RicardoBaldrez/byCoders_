@@ -7,8 +7,13 @@ import Forecasts from './components/Forecasts';
 import './App.css';
 
 function App() {
-  const [latitude, setLatitude] = useState<string>("");
-  const [longitude, setLongitude] = useState<string>("");
+  const [latitude, setLatitude] = useState<string>('');
+  const [longitude, setLongitude] = useState<string>('');
+  console.log({ latitude });
+  console.log({ longitude });
+
+  const handleLatitudeChange = (value: string) => setLatitude(value);
+  const handleLongitudeChange = (value: string) => setLongitude(value);
 
   return (
     <>
@@ -17,14 +22,32 @@ function App() {
       <BrowserRouter>
         <Link to="/">Come back</Link>
         <div>
-          <NavLink to="/forecasts" className={({ isActive }) => isActive ? "active" : ""}>Forecasts</NavLink>{" "}/{" "}
-          <NavLink to="/add-forecast" className={({ isActive }) => isActive ? "active" : ""}>add-forecast</NavLink>
+          <NavLink
+            to="/forecasts"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            Forecasts
+          </NavLink>
+          <NavLink
+            to="/add-forecast"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            add-forecast
+          </NavLink>
         </div>
 
         <Routes>
-          <Route path='/' element={<h1>Page Initial</h1>} />
+          <Route path="/" element={<h1>Page Initial</h1>} />
           <Route path="/forecasts" element={<Forecasts />} />
-          <Route path='/add-forecast' element={<AddForecast />} />
+          <Route
+            path="/add-forecast"
+            element={
+              <AddForecast
+                onLatitudeChange={handleLatitudeChange}
+                onLongitudeChange={handleLongitudeChange}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
