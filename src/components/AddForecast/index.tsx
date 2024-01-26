@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 
 interface PropsAddForecast {
-  onLatitudeChange: any;
-  onLongitudeChange: any;
+  onLatitudeChange: (value: string) => void;
+  onLongitudeChange: (value: string) => void;
 }
 
 export default function AddForecast({

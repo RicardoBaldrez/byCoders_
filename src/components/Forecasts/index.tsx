@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 export default function Forecasts(): ReactElement {
-  return <h1>Forecast Page</h1>
+  return <h1>Forecast Page</h1>;
 }
