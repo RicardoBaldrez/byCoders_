@@ -3,47 +3,33 @@ import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
 
 import AddForecast from './components/AddForecast';
 import Forecasts from './components/Forecasts';
-import Loader from './components/Loader';
-import useFetch from './hooks/useFetch';
 
 import './App.css';
+import { iconAccordingMmoCode } from './utils/iconAccordingMmoCode.js';
 
 function App() {
   const [latitude, setLatitude] = useState<string>('');
   const [longitude, setLongitude] = useState<string>('');
-  const [errorApi, setErrorApi] = useState<string>('');
-
-  const { get, loading } = useFetch('https://api.open-meteo.com/v1');
+  const [error, setError] = useState<string>('');
 
   const handleLatitudeChange = (value: string) => setLatitude(value);
   const handleLongitudeChange = (value: string) => setLongitude(value);
+  const handleErrorChange = (value: string) => setError(value);
 
-  const handleFetchButtonClick = () => {
-    get(
-      `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,is_day`,
-    )
-      .then(data =>
-        localStorage.setItem('location_weather', JSON.stringify(data)),
-      )
-      .catch(error => {
-        if (error.error) {
-          setErrorApi(error.reason);
-        }
-      });
-  };
+  const descWeatherAccordingCodeMmo = iconAccordingMmoCode(3);
 
   return (
     <>
-      <span>-25,4278</span>
-      <br />
+      <p>SP: Latitude: -23.5489, Longitude: -46.6388</p>
+      <span>-25,4278, </span>
       <span>-49,2731</span>
-      <h2>Error examplo</h2>
-      <span>233301</span>
       <br />
-      <span>463802</span>
+      <br />
+
+      <h1>According Code: </h1>
+      <span style={{ fontWeight: 'bold' }}>{descWeatherAccordingCodeMmo}</span>
 
       <h1>Initial Page</h1>
-      {loading && <Loader />}
       <BrowserRouter>
         <Link to="/">Come back</Link>
         <div>
@@ -67,15 +53,14 @@ function App() {
           <Route
             path="/add-forecast"
             element={
-              <>
-                <AddForecast
-                  onLatitudeChange={handleLatitudeChange}
-                  onLongitudeChange={handleLongitudeChange}
-                />
-                <button onClick={handleFetchButtonClick} type="button">
-                  fetch weather
-                </button>
-              </>
+              <AddForecast
+                errorApi={error}
+                latitude={latitude}
+                longitude={longitude}
+                onErrorChange={handleErrorChange}
+                onLatitudeChange={handleLatitudeChange}
+                onLongitudeChange={handleLongitudeChange}
+              />
             }
           />
         </Routes>
