@@ -16,8 +16,6 @@ function App() {
   const handleLongitudeChange = (value: string) => setLongitude(value);
   const handleErrorChange = (value: string) => setError(value);
 
-  const descWeatherAccordingCodeMmo = iconAccordingMmoCode(3);
-
   return (
     <>
       <p>SP: Latitude: -23.5489, Longitude: -46.6388</p>
@@ -27,7 +25,7 @@ function App() {
       <br />
 
       <h1>According Code: </h1>
-      <span style={{ fontWeight: 'bold' }}>{descWeatherAccordingCodeMmo}</span>
+      <span style={{ fontWeight: 'bold' }}>{iconAccordingMmoCode(82)}</span>
 
       <h1>Initial Page</h1>
       <BrowserRouter>

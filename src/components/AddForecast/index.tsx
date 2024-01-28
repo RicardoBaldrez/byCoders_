@@ -35,7 +35,6 @@ export default function AddForecast({
       )
       .catch(error => {
         if (error.error) {
-          console.error(error);
           onErrorChange(error.reason);
         }
       });

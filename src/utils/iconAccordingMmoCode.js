@@ -1,48 +1,58 @@
-export function iconAccordingMmoCode(code_weather) {
-  let weatherIcon;
+import {
+  Cloud,
+  LightRain,
+  PartlyCloud,
+  RainShower,
+  Rain,
+  Sunny,
+  ThunderShower,
+} from '../assets/weathers-icons';
 
+export function iconAccordingMmoCode(code_weather) {
   switch (code_weather) {
     case 0:
-      weatherIcon = <h1>Clear Sky</h1>;
+      return <Sunny />;
       break;
     case 1:
-      weatherIcon = <h1>Principalmente claro</h1>;
+      console.log('Principalmente claro');
+      return <Sunny />;
       break;
     case 2:
-      weatherIcon = <h1>Parcialmente nublado</h1>;
+      console.log('Parcialmente nublado');
+      return <PartlyCloud />;
       break;
     case 3:
-      weatherIcon = <h1>Encoberto</h1>;
+      console.log('Encoberto');
+      return <Cloud />;
       break;
     case 51:
-      weatherIcon = <h1>Chuvisco Intensidade leve</h1>;
+    case 61:
+      console.log('Chuva Intensidade leve');
+      return <LightRain />;
       break;
     case 53:
-      weatherIcon = <h1>Chuvisco Intensidade moderada</h1>;
-    case 55:
-      weatherIcon = <h1>Chuvisco Intensidade denso</h1>;
-      break;
-    case 61:
-      weatherIcon = <h1>Chuva Intensidade leve</h1>;
-      break;
     case 63:
-      weatherIcon = <h1>Chuva Intensidade moderada</h1>;
+      console.log('Chuva Intensidade moderada');
+      return <Rain />;
       break;
+    case 55:
     case 65:
-      weatherIcon = <h1>Chuva Intensidade forte</h1>;
+      console.log('Chuva Intensidade forte');
+      return <RainShower />;
       break;
     case 80:
-      weatherIcon = <h1>Pancadas de chuva Intensidade leve</h1>;
-      break;
+    // return <h1>Pancadas de chuva Intensidade leve</h1>;
+    // break;
     case 81:
-      weatherIcon = <h1>Pancadas de chuva Intensidade moderada</h1>;
-      break;
+    // return <h1>Pancadas de chuva Intensidade moderada</h1>;
+    // break;
     case 82:
-      weatherIcon = <h1>Pancadas de chuva Intensidade violentas</h1>;
+      console.log('Pancadas de chuva Intensidade violentas');
+      return <ThunderShower />;
       break;
 
     default:
-      weatherIcon = <h1>default</h1>;
+      return <h1>default</h1>;
       break;
   }
 
