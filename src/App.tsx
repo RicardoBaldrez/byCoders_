@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import AddForecast from './components/AddForecast';
-import Forecasts from './components/Forecasts';
-
+import Header from './components/Header';
+import AddForecast from './pages/AddForecast';
+import Forecasts from './pages/Forecasts';
+import HomePage from './pages/HomePage';
 import './App.css';
-import { iconAccordingMmoCode } from './utils/iconAccordingMmoCode.js';
 
 function App() {
   const [latitude, setLatitude] = useState<string>('');
@@ -17,36 +17,14 @@ function App() {
   const handleErrorChange = (value: string) => setError(value);
 
   return (
-    <>
-      <p>SP: Latitude: -23.5489, Longitude: -46.6388</p>
-      <span>-25,4278, </span>
-      <span>-49,2731</span>
-      <br />
-      <br />
-
-      <h1>According Code: </h1>
-      <span style={{ fontWeight: 'bold' }}>{iconAccordingMmoCode(82)}</span>
-
-      <h1>Initial Page</h1>
+    <div
+      style={{ display: 'flex', border: '5px solid green', height: '100vh' }}
+    >
+      {/* <p>SP: Latitude: -23.5489, Longitude: -46.6388</p> */}
       <BrowserRouter>
-        <Link to="/">Come back</Link>
-        <div>
-          <NavLink
-            to="/forecasts"
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            Forecasts
-          </NavLink>
-          <NavLink
-            to="/add-forecast"
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            add-forecast
-          </NavLink>
-        </div>
-
+        <Header />
         <Routes>
-          <Route path="/" element={<h1>Page Initial</h1>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/forecasts" element={<Forecasts />} />
           <Route
             path="/add-forecast"
@@ -63,7 +41,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
