@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  border: 4px solid yellow;
   display: flex;
   align-items: center;
   justify-content: center;

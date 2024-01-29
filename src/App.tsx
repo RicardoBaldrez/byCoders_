@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/Header';
 import AddForecast from './pages/AddForecast';
 import Forecasts from './pages/Forecasts';
-import HomePage from './pages/HomePage';
 import './App.css';
 
 function App() {
@@ -17,14 +16,11 @@ function App() {
   const handleErrorChange = (value: string) => setError(value);
 
   return (
-    <div
-      style={{ display: 'flex', border: '5px solid green', height: '100vh' }}
-    >
-      {/* <p>SP: Latitude: -23.5489, Longitude: -46.6388</p> */}
+    <div style={{ display: 'flex', height: '100vh' }}>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Navigate replace to="/add-forecast" />} />
           <Route path="/forecasts" element={<Forecasts />} />
           <Route
             path="/add-forecast"

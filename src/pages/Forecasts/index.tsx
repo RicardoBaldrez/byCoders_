@@ -13,6 +13,13 @@ import {
   WrapperMaxMinTemp,
 } from './styles';
 
+interface Detail {
+  data: string;
+  temp_max: string;
+  temp_min: string;
+  weather_code: string;
+}
+
 export default function Forecasts(): ReactElement {
   const [detailsLocal, setDetailsLocal] = useState<any>(() => {
     let infos;
@@ -25,6 +32,8 @@ export default function Forecasts(): ReactElement {
 
     return infos;
   });
+
+  console.log(detailsLocal);
 
   const days = detailsLocal.daily.time;
   const codes = detailsLocal.daily.weather_code;
@@ -99,9 +108,7 @@ export default function Forecasts(): ReactElement {
       <SectionDaily>
         <ListLastSevenDays>
           <h1>Próximos 7 dias</h1>
-          {joinToDetails.map((detail: any, index: number) => {
-            console.log(detail.weather_code);
-
+          {joinToDetails.map((detail: Detail, index: number) => {
             return (
               <li key={index}>
                 {moment(detail.data).format('DD')}

@@ -27,7 +27,9 @@ export default function AddForecast({
 
   const { get, loading } = useFetch('https://api.open-meteo.com/v1');
 
-  const handleFetchButtonClick = (e: any) => {
+  const handleFetchButtonClick = (
+    e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>,
+  ) => {
     e.preventDefault();
 
     onErrorChange('');
@@ -62,7 +64,9 @@ export default function AddForecast({
             name="latitude"
             step="0.000001"
             placeholder="Latitude"
-            onChange={(event: any) => onLatitudeChange(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+              onLatitudeChange(event.target.value)
+            }
             required
           />
           <Input
@@ -72,7 +76,9 @@ export default function AddForecast({
             name="longitude"
             step="0.000001"
             placeholder="Longitude"
-            onChange={(event: any) => onLongitudeChange(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+              onLongitudeChange(event.target.value)
+            }
             required
           />
           <button type="submit" disabled={loading}>

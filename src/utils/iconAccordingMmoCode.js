@@ -61,14 +61,14 @@ export function iconAccordingMmoCode(code_weather) {
     case 82:
       return {
         icon: <ThunderShower />,
-        reason: 'Pancadas de chuva Intensidade violentas',
+        reason: 'Pancadas de chuva Intensidade medianas',
       };
       break;
     case 95:
     case 96:
       return {
         icon: <Bolt />,
-        reason: 'Pancadas de chuva',
+        reason: 'Pancadas de chuva Intensidade violentas',
       };
       break;
     default:
