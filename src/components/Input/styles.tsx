@@ -20,10 +20,10 @@ export const InputElement = styled.input`
   width: calc(100% - 20px);
   border-radius: 5px;
   background-color: #f1f1f1;
-  border-left: 0px solid #707070;
+  border-left: 0px;
   transition: border-left 160ms;
   &:focus {
     outline: none;
-    border-left: 7px solid #707070;
+    border-left: 7px solid #212d48;
   }
 `;

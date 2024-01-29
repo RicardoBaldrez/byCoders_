@@ -1,7 +1,9 @@
 import React, { ReactElement, useState } from 'react';
 
 import moment from 'moment';
+import { useRecoilValue } from 'recoil';
 
+import { detailsLocalAtom } from '../../components/state/atom';
 import { iconAccordingMmoCode } from '../../utils/iconAccordingMmoCode.js';
 import {
   SectionCurrent,
@@ -21,19 +23,19 @@ interface Detail {
 }
 
 export default function Forecasts(): ReactElement {
-  const [detailsLocal, setDetailsLocal] = useState<any>(() => {
-    let infos;
-    try {
-      const infoslocal = localStorage.getItem('location_weather');
-      infos = infoslocal !== null ? JSON.parse(infoslocal) : [];
-    } catch (error) {
-      infos = [];
-    }
+  // const [detailsLocal, setDetailsLocal] = useState<any>(() => {
+  //   let infos;
+  //   try {
+  //     const infoslocal = localStorage.getItem('location_weather');
+  //     infos = infoslocal !== null ? JSON.parse(infoslocal) : [];
+  //   } catch (error) {
+  //     infos = [];
+  //   }
 
-    return infos;
-  });
-
-  console.log(detailsLocal);
+  //   return infos;
+  // });
+  const detailsLocal = useRecoilValue(detailsLocalAtom);
+  console.log('MyAtom:', detailsLocal);
 
   const days = detailsLocal.daily.time;
   const codes = detailsLocal.daily.weather_code;

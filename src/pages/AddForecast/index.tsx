@@ -1,8 +1,11 @@
 import React, { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSetRecoilState } from 'recoil';
+
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import { detailsLocalAtom } from '../../components/state/atom';
 import useFetch from '../../hooks/useFetch';
 import { Wrapper, Form, Content } from './styles';
 
@@ -24,6 +27,7 @@ export default function AddForecast({
   onLongitudeChange,
 }: PropsAddForecast): ReactElement {
   const navigate = useNavigate();
+  const setDetailsLocal = useSetRecoilState(detailsLocalAtom);
 
   const { get, loading } = useFetch('https://api.open-meteo.com/v1');
 
@@ -42,6 +46,7 @@ export default function AddForecast({
     )
       .then(data => {
         localStorage.setItem('location_weather', JSON.stringify(data));
+        setDetailsLocal(data);
         navigate('/forecasts');
       })
       .catch(error => {
