@@ -6,7 +6,8 @@ import {
   Rain,
   Sunny,
   ThunderShower,
-} from '../assets/weathers-icons';
+  Bolt,
+} from '../assets';
 
 export function iconAccordingMmoCode(code_weather) {
   switch (code_weather) {
@@ -63,8 +64,15 @@ export function iconAccordingMmoCode(code_weather) {
         reason: 'Pancadas de chuva Intensidade violentas',
       };
       break;
+    case 95:
+    case 96:
+      return {
+        icon: <Bolt />,
+        reason: 'Pancadas de chuva',
+      };
+      break;
     default:
-      return <h1>default</h1>;
+      return <PartlyCloud />;
       break;
   }
 

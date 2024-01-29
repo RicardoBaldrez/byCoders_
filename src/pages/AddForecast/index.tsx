@@ -32,9 +32,12 @@ export default function AddForecast({
 
     onErrorChange('');
 
-    const params = `latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,cloud_cover,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m&timezone=America%2FSao_Paulo`;
+    const paramsCurrent = `&current=is_day,temperature_2m,relative_humidity_2m,apparent_temperature,cloud_cover,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m`;
+    const paramsDaily = `&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum`;
 
-    get(`/forecast?${params}`)
+    get(
+      `/forecast?&timezone=America%2FSao_Paulo&latitude=${latitude}&longitude=${longitude}&${paramsCurrent}&${paramsDaily}`,
+    )
       .then(data => {
         localStorage.setItem('location_weather', JSON.stringify(data));
         navigate('/forecasts');
