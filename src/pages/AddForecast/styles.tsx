@@ -33,5 +33,16 @@ export const Form = styled.form`
   }
   & button {
     margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #c6c6c6;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: #212d48;
+    }
   }
 `;

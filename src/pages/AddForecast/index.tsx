@@ -82,7 +82,7 @@ export default function AddForecast({
             required
           />
           <button type="submit" disabled={loading}>
-            fetch weather
+            Buscar
           </button>
           {errorApi && (
             <p style={{ fontWeight: 'bold', color: 'red' }}>{errorApi}</p>
