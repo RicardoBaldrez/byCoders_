@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
@@ -35,7 +35,6 @@ export default function Forecasts(): ReactElement {
   //   return infos;
   // });
   const detailsLocal = useRecoilValue(detailsLocalAtom);
-  console.log('MyAtom:', detailsLocal);
 
   const days = detailsLocal.daily.time;
   const codes = detailsLocal.daily.weather_code;
