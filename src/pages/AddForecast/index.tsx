@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 import useFetch from '../../hooks/useFetch';
 import { Wrapper, Form, Content } from './styles';
@@ -33,51 +34,44 @@ export default function AddForecast({
 
     const params = `latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,cloud_cover,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m&timezone=America%2FSao_Paulo`;
 
-    // get(`/forecast?${params}`)
-    //   .then(data => {
-    //     localStorage.setItem('location_weather', JSON.stringify(data));
-    //     navigate('/forecasts');
-    //   })
-    //   .catch(error => {
-    //     if (error.error) {
-    //       onErrorChange(error.reason);
-    //     }
-    //   });
+    get(`/forecast?${params}`)
+      .then(data => {
+        localStorage.setItem('location_weather', JSON.stringify(data));
+        navigate('/forecasts');
+      })
+      .catch(error => {
+        if (error.error) {
+          onErrorChange(error.reason);
+        }
+      });
   };
 
   return (
     <Wrapper>
       <Content>
-        <h1>AddForecast Page</h1>
+        <h1>Veja o tempo para região escolhida</h1>
 
         <Form onSubmit={handleFetchButtonClick}>
-          <label>
-            Latitude:
-            <input
-              // min="-90"
-              // max="90"
-              type="number"
-              name="latitude"
-              step="0.000001"
-              placeholder="Latitude"
-              onChange={event => onLatitudeChange(event.target.value)}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Longitude:
-            <input
-              // min="-90"
-              // max="90"
-              type="number"
-              name="longitude"
-              step="0.000001"
-              placeholder="Longitude"
-              onChange={event => onLongitudeChange(event.target.value)}
-              required
-            />
-          </label>
+          <Input
+            // min="-90"
+            // max="90"
+            type="number"
+            name="latitude"
+            step="0.000001"
+            placeholder="Latitude"
+            onChange={(event: any) => onLatitudeChange(event.target.value)}
+            required
+          />
+          <Input
+            // min="-90"
+            // max="90"
+            type="number"
+            name="longitude"
+            step="0.000001"
+            placeholder="Longitude"
+            onChange={(event: any) => onLongitudeChange(event.target.value)}
+            required
+          />
           <button type="submit" disabled={loading}>
             fetch weather
           </button>
