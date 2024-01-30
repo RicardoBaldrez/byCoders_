@@ -3,12 +3,12 @@ import React, { ReactElement } from 'react';
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
+import Card from '../../components/Card';
 import { detailsLocalAtom } from '../../components/state/atom';
 import { iconAccordingMmoCode } from '../../utils/iconAccordingMmoCode.js';
 import {
   Wrapper,
   SectionCurrent,
-  WrapperCardContent,
   HeaderCard,
   ContentDetails,
   SectionDaily,
@@ -54,7 +54,7 @@ export default function Forecasts(): ReactElement {
   return (
     <Wrapper>
       <SectionCurrent>
-        <WrapperCardContent>
+        <Card>
           <HeaderCard>
             <h1>
               Tempo agora para {detailsLocal?.latitude}/
@@ -109,28 +109,32 @@ export default function Forecasts(): ReactElement {
               </p>
             </ContentDetails>
           </div>
-        </WrapperCardContent>
+        </Card>
       </SectionCurrent>
       <SectionDaily>
-        <ListLastSevenDays>
-          <h1>Próximos 7 dias</h1>
-          {joinToDetails?.map((detail: Detail, index: number) => {
-            return (
-              <li key={index}>
-                {moment(detail?.date).format('DD')}
-                {iconAccordingMmoCode(detail?.weather_code).icon}
-                <WrapperMaxMinTemp>
-                  <p>
-                    max <span>{parseInt(detail?.temp_max, 10)}º</span>
-                  </p>
-                  <p>
-                    min <span>{parseInt(detail?.temp_min, 10)}º</span>
-                  </p>
-                </WrapperMaxMinTemp>
-              </li>
-            );
-          })}
-        </ListLastSevenDays>
+        <Card>
+          <HeaderCard>
+            <h1>Próximos 7 dias</h1>
+          </HeaderCard>
+          <ListLastSevenDays>
+            {joinToDetails?.map((detail: Detail, index: number) => {
+              return (
+                <li key={index}>
+                  {moment(detail?.date).format('DD')}
+                  {iconAccordingMmoCode(detail?.weather_code).icon}
+                  <WrapperMaxMinTemp>
+                    <p>
+                      max <span>{parseInt(detail?.temp_max, 10)}º</span>
+                    </p>
+                    <p>
+                      min <span>{parseInt(detail?.temp_min, 10)}º</span>
+                    </p>
+                  </WrapperMaxMinTemp>
+                </li>
+              );
+            })}
+          </ListLastSevenDays>
+        </Card>
       </SectionDaily>
     </Wrapper>
   );

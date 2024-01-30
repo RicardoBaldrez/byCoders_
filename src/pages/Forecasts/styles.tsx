@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   padding: 40px 40px 40px 40px;
-  border: 2px solid red;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -10,13 +9,6 @@ export const Wrapper = styled.div`
 
 export const SectionCurrent = styled.section`
   margin: 0 40px 40px 0;
-`;
-
-export const WrapperCardContent = styled.div`
-  width: 350px;
-  padding: 25px;
-  border-radius: 5px;
-  background-color: #fff;
 `;
 
 export const HeaderCard = styled.header`
@@ -44,15 +36,6 @@ export const SectionDaily = styled.section`
 `;
 
 export const ListLastSevenDays = styled.ul`
-  padding: 25px;
-  border-radius: 5px;
-  background-color: #fff;
-  width: 350px;
-  & h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
   & li {
     display: flex;
     align-items: center;
