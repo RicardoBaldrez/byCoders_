@@ -41,9 +41,9 @@ export default function Forecasts(): ReactElement {
   const temp_max = detailsLocal.daily.temperature_2m_max;
   const temp_min = detailsLocal.daily.temperature_2m_min;
 
-  const joinToDetails = days.map((e: string, i: number) => {
+  const joinToDetails = days.map((day: string, i: number) => {
     return {
-      data: e,
+      date: day,
       weather_code: codes[i],
       temp_max: temp_max[i],
       temp_min: temp_min[i],

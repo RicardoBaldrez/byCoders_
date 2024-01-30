@@ -6,9 +6,6 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   width: calc(100% - 120px);
-  background-image: url('https://i.pinimg.com/736x/aa/6c/4a/aa6c4ae88d3ff228a6043e2c21e323bc.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
 `;
 
 export const Content = styled.section`

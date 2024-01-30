@@ -107,7 +107,10 @@ section {
 }
 body {
   line-height: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-image: url('https://img.freepik.com/vetores-gratis/sky-fundo-para-videoconferencia_23-2148639325.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1700438400&semt=ais');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 ol,
 ul {
