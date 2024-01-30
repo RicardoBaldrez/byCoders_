@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
-export const SectionCurrent = styled.section`
-  padding: 25px;
+export const Wrapper = styled.div`
+  padding: 40px 40px 40px 40px;
+  border: 2px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 `;
 
-export const WrapperCardContent = styled.section`
+export const SectionCurrent = styled.section`
+  margin: 0 40px 40px 0;
+`;
+
+export const WrapperCardContent = styled.div`
+  width: 350px;
   padding: 25px;
   border-radius: 5px;
   background-color: #fff;
@@ -31,11 +40,11 @@ export const ContentDetails = styled.div`
 `;
 
 export const SectionDaily = styled.section`
-  padding: 25px;
+  margin: 0 40px 40px 0;
 `;
 
 export const ListLastSevenDays = styled.ul`
-  padding: 20px;
+  padding: 25px;
   border-radius: 5px;
   background-color: #fff;
   width: 350px;

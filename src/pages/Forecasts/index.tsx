@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { detailsLocalAtom } from '../../components/state/atom';
 import { iconAccordingMmoCode } from '../../utils/iconAccordingMmoCode.js';
 import {
+  Wrapper,
   SectionCurrent,
   WrapperCardContent,
   HeaderCard,
@@ -16,7 +17,7 @@ import {
 } from './styles';
 
 interface Detail {
-  data: string;
+  date: string;
   temp_max: string;
   temp_min: string;
   weather_code: string;
@@ -36,12 +37,12 @@ export default function Forecasts(): ReactElement {
   // });
   const detailsLocal = useRecoilValue(detailsLocalAtom);
 
-  const days = detailsLocal.daily.time;
-  const codes = detailsLocal.daily.weather_code;
-  const temp_max = detailsLocal.daily.temperature_2m_max;
-  const temp_min = detailsLocal.daily.temperature_2m_min;
+  const days = detailsLocal?.daily?.time;
+  const codes = detailsLocal?.daily?.weather_code;
+  const temp_max = detailsLocal?.daily?.temperature_2m_max;
+  const temp_min = detailsLocal?.daily?.temperature_2m_min;
 
-  const joinToDetails = days.map((day: string, i: number) => {
+  const joinToDetails = days?.map((day: string, i: number) => {
     return {
       date: day,
       weather_code: codes[i],
@@ -51,12 +52,13 @@ export default function Forecasts(): ReactElement {
   });
 
   return (
-    <>
+    <Wrapper>
       <SectionCurrent>
         <WrapperCardContent>
           <HeaderCard>
             <h1>
-              Tempo agora para {detailsLocal.latitude}/{detailsLocal.longitude}
+              Tempo agora para {detailsLocal?.latitude}/
+              {detailsLocal?.longitude}
             </h1>
           </HeaderCard>
           <div>
@@ -67,7 +69,7 @@ export default function Forecasts(): ReactElement {
                 justifyContent: 'center',
               }}
             >
-              {iconAccordingMmoCode(detailsLocal.current.weather_code).icon}{' '}
+              {iconAccordingMmoCode(detailsLocal?.current?.weather_code)?.icon}{' '}
               <span
                 style={{
                   fontWeight: 'bold',
@@ -75,31 +77,34 @@ export default function Forecasts(): ReactElement {
                   marginLeft: '15px',
                 }}
               >
-                {parseInt(detailsLocal.current.temperature_2m, 10)}º
+                {parseInt(detailsLocal?.current?.temperature_2m, 10)}º
               </span>
             </p>
             <ContentDetails>
               <p>
-                {iconAccordingMmoCode(detailsLocal.current.weather_code).reason}
+                {
+                  iconAccordingMmoCode(detailsLocal?.current?.weather_code)
+                    .reason
+                }
               </p>
               <p>
                 Sensação{' '}
                 <span>
-                  {parseInt(detailsLocal.current.apparent_temperature, 10)}º
+                  {parseInt(detailsLocal?.current?.apparent_temperature, 10)}º
                 </span>
               </p>
               <p>
                 Pressão{' '}
                 <span>
-                  {parseInt(detailsLocal.current.surface_pressure, 10)}
-                  {detailsLocal.current_units.surface_pressure}
+                  {parseInt(detailsLocal?.current?.surface_pressure, 10)}
+                  {detailsLocal?.current_units?.surface_pressure}
                 </span>
               </p>
               <p>
                 Umidade relativa{' '}
                 <span>
-                  {parseInt(detailsLocal.current.relative_humidity_2m, 10)}
-                  {detailsLocal.current_units.relative_humidity_2m}
+                  {parseInt(detailsLocal?.current?.relative_humidity_2m, 10)}
+                  {detailsLocal?.current_units?.relative_humidity_2m}
                 </span>
               </p>
             </ContentDetails>
@@ -109,17 +114,17 @@ export default function Forecasts(): ReactElement {
       <SectionDaily>
         <ListLastSevenDays>
           <h1>Próximos 7 dias</h1>
-          {joinToDetails.map((detail: Detail, index: number) => {
+          {joinToDetails?.map((detail: Detail, index: number) => {
             return (
               <li key={index}>
-                {moment(detail.data).format('DD')}
-                {iconAccordingMmoCode(detail.weather_code).icon}
+                {moment(detail?.date).format('DD')}
+                {iconAccordingMmoCode(detail?.weather_code).icon}
                 <WrapperMaxMinTemp>
                   <p>
-                    max <span>{parseInt(detail.temp_max, 10)}º</span>
+                    max <span>{parseInt(detail?.temp_max, 10)}º</span>
                   </p>
                   <p>
-                    min <span>{parseInt(detail.temp_min, 10)}º</span>
+                    min <span>{parseInt(detail?.temp_min, 10)}º</span>
                   </p>
                 </WrapperMaxMinTemp>
               </li>
@@ -127,6 +132,6 @@ export default function Forecasts(): ReactElement {
           })}
         </ListLastSevenDays>
       </SectionDaily>
-    </>
+    </Wrapper>
   );
 }

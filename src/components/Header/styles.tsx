@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.header`
-  width: 120px;
+export const MenuWrapper = styled.header`
+  min-width: 120px;
   padding: 15px;
   background-color: black;
   & ul li {

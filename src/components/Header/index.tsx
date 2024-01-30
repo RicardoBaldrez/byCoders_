@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { HeaderWrapper } from './styles';
+import { MenuWrapper } from './styles';
 
-export default function Header(): ReactElement {
+export default function Menu(): ReactElement {
   return (
-    <HeaderWrapper>
+    <MenuWrapper>
       <nav>
         <ul>
           <li>
@@ -26,6 +26,6 @@ export default function Header(): ReactElement {
           </li>
         </ul>
       </nav>
-    </HeaderWrapper>
+    </MenuWrapper>
   );
 }
