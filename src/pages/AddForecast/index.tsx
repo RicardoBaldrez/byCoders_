@@ -36,7 +36,7 @@ export default function AddForecast({
   ) => {
     e.preventDefault();
 
-    onErrorChange('');
+    // onErrorChange('');
 
     const paramsCurrent = `&current=is_day,temperature_2m,relative_humidity_2m,apparent_temperature,cloud_cover,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m`;
     const paramsDaily = `&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum`;
